@@ -1,0 +1,34 @@
+2026 11 02
+
+OSNS_generic
+------------
+
+OSNS generic program, which does start other modules/services. The funtionality lies in these modules,
+OSNS_genric self offers nothing.
+
+By default it reads the profile like:
+
+OSNS_generic --profile=mount
+
+or
+
+OSNS_generic --profile=dnssd
+
+These profiles are files, which are located at:
+
+/etc/osns/start
+
+These files contain information about what modules to load, and how. For example, the "dnssd" profile looks like:
+
+osns_net_dnssd.so action
+
+means OSNS_generic will load the osns_net_dnssd.so module, and will look for the struct osns_ctx_action_s, and will
+start the member "manage" to start functionality this module has. For example:
+
+to start the dnssd service (send dns sd requests, process the replies, maintain a local db as cache of local hosts and services),
+the osns_ctx_action_s struct has to be used, to browse the services found in the db, this is not required.
+
+
+
+
+
